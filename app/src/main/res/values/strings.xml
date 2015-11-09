@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Taller-Android-BD</string>
+    <string name="start">Iniciar</string>
+    <string name="add">Añadir</string>
+    <string name="new_item">Nuevo Item</string>
+    <string name="item_detail">Detalles</string>
+    <string name="exit">Salir</string>
+    <string name="test">Test</string>
+    <string name="void_string"></string>
+</resources>
