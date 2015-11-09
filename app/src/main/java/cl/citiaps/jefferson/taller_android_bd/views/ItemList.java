@@ -8,9 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import cl.citiaps.jefferson.taller_android_bd.R;
 import cl.citiaps.jefferson.taller_android_bd.controllers.HttpGet;
@@ -24,7 +26,7 @@ import cl.citiaps.jefferson.taller_android_bd.utilities.SystemUtilities;
 public class ItemList extends ListFragment {
 
     private BroadcastReceiver br = null;
-    private final String URL_GET = "http://192.168.0.11:8080/sakila-backend/actors";
+    private final String URL_GET = "http://158.170.250.125:8080/sakila-backend/actors";
 
     /**
      * Constructor. Obligatorio para Fragmentos!
@@ -66,7 +68,9 @@ public class ItemList extends ListFragment {
             @Override
             public void onReceive(Context context, Intent intent) {
                 JsonHandler jh = new JsonHandler();
-                String[] actorsList = jh.getActors(intent.getStringExtra("data"));
+                String s=intent.getStringExtra("data");
+                Log.i("TAG","msg:="+s);
+                String[] actorsList = jh.getActors(s);
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity()
                         , android.R.layout.simple_list_item_1, actorsList);
                 setListAdapter(adapter);
@@ -75,7 +79,11 @@ public class ItemList extends ListFragment {
         getActivity().registerReceiver(br, intentFilter);
         SystemUtilities su = new SystemUtilities(getActivity().getApplicationContext());
         if (su.isNetworkAvailable()) {
+            Log.i("TBD_TAG","Conectado a la red");
             new HttpGet(getActivity().getApplicationContext()).execute(URL_GET);
+        }else{
+            Log.e("TBD_TAG","error de red");
+            Toast.makeText(getActivity().getApplicationContext(),"Error de conexión , intenta de nuevo o más tarde",Toast.LENGTH_LONG).show();
         }
         super.onResume();
     }// onResume()
