@@ -26,7 +26,7 @@ import cl.citiaps.jefferson.taller_android_bd.utilities.SystemUtilities;
 public class ItemList extends ListFragment {
 
     private BroadcastReceiver br = null;
-    private final String URL_GET = "http://158.170.250.125:8080/sakila-backend/actors";
+    private final String URL_GET = "http://192.168.42.63:8080/sakila-backend/actors";
 
     /**
      * Constructor. Obligatorio para Fragmentos!
@@ -68,12 +68,16 @@ public class ItemList extends ListFragment {
             @Override
             public void onReceive(Context context, Intent intent) {
                 JsonHandler jh = new JsonHandler();
-                String s=intent.getStringExtra("data");
-                Log.i("TAG","msg:="+s);
-                String[] actorsList = jh.getActors(s);
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity()
-                        , android.R.layout.simple_list_item_1, actorsList);
-                setListAdapter(adapter);
+                String s = intent.getStringExtra("data");
+                try{
+                    String[] actorsList = jh.getActors(s);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity()
+                            , android.R.layout.simple_list_item_1, actorsList);
+                    setListAdapter(adapter);
+                }catch (java.lang.RuntimeException e) {
+                    Log.i("TAG", "Error al recibir el mensaje");
+                }
+
             }
         };
         getActivity().registerReceiver(br, intentFilter);

@@ -58,6 +58,7 @@ public class HttpGet extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         Intent intent = new Intent("httpData").putExtra("data", result);
         context.sendBroadcast(intent);
+
     }// onPostExecute(String result)
 
 }// HttpGet extends AsyncTask<String, Void, String>

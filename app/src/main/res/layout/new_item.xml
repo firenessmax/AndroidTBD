@@ -3,11 +3,44 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:gravity="center_horizontal"
-              android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
+              android:orientation="vertical"
+    android:weightSum="1">
+
+
+    <Space
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/new_item"
-        android:id="@+id/new_item"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_weight="0.10" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/etName"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:hint="Nombre" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/etLastName"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:hint="Apellido" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Agregar"
+        android:id="@+id/botonAgregar"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" />
 </LinearLayout>
