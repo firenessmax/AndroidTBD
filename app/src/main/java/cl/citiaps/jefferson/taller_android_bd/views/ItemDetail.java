@@ -2,6 +2,7 @@ package cl.citiaps.jefferson.taller_android_bd.views;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,10 @@ public class ItemDetail extends Fragment {
     @Override
     public void onViewStateRestored(Bundle savedInstanceState) {
         Bundle bundle = getArguments();
+        Log.i("TBD_TAG",bundle.toString());
         ((TextView) getView().findViewById(R.id.item_detail)).setText(bundle.getString("item"));
+        ((TextView) getView().findViewById(R.id.item_detail_id)).setText("ID : "+bundle.getString("id"));
+        ((TextView) getView().findViewById(R.id.item_detail_lu)).setText(bundle.getString("lastUpdate"));
         super.onViewStateRestored(savedInstanceState);
     }// onViewStateRestored(Bundle savedInstanceState)
 

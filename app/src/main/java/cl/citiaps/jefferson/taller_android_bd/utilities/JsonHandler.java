@@ -31,5 +31,17 @@ public class JsonHandler {
         }
         return null;
     }// getActors(String actors)
-
+    public String[] getDetail(String actors,int pos){
+        try {
+            JSONArray ja = new JSONArray(actors);
+            JSONObject row = ja.getJSONObject(pos);
+            String[] result = new String[2];
+            result[0]=row.getString("actorId");
+            result[1]=row.getString("lastUpdate");
+            return result;
+        } catch (JSONException e) {
+            Log.e("ERROR", this.getClass().toString() + " " + e.toString());
+        }
+        return null;
+    }
 }// JsonHandler

@@ -12,6 +12,8 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Scanner;
 
+import cl.citiaps.jefferson.taller_android_bd.views.ItemList;
+
 /**
  * @author: Jefferson Morales De la Parra
  * Clase que se utiliza para realizar peticiones HTTP mediante el método GET
@@ -19,12 +21,16 @@ import java.util.Scanner;
 public class HttpGet extends AsyncTask<String, Void, String> {
 
     private Context context;
-
+    private ItemList il=null;
     /**
      * Constructor
      */
     public HttpGet(Context context) {
         this.context = context;
+    }// HttpGet(Context context)
+    public HttpGet(Context context,ItemList il) {
+        this.context = context;
+        this.il=il;
     }// HttpGet(Context context)
 
     /**
@@ -58,7 +64,7 @@ public class HttpGet extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         Intent intent = new Intent("httpData").putExtra("data", result);
         context.sendBroadcast(intent);
-
+        if(il!=null)il.setJsonData(result);
     }// onPostExecute(String result)
 
 }// HttpGet extends AsyncTask<String, Void, String>

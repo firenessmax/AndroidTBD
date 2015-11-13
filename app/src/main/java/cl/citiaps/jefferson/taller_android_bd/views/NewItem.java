@@ -64,7 +64,9 @@ public class NewItem extends Fragment implements View.OnClickListener  {
             SystemUtilities su = new SystemUtilities(getActivity().getApplicationContext());
             if (su.isNetworkAvailable()) {
                 Log.i("TBD_TAG","Enviando Nuevo Actor");
-                new HttpPost(getActivity().getApplicationContext(),"{\"firstName\":\""+name+"\", \"lastName\":\""+apellido+"\"}",this).execute(URL_POST);
+                new HttpPost(getActivity().getApplicationContext(),
+                        "{\"firstName\":\""+name+"\", \"lastName\":\""+apellido+"\"}",this)
+                        .execute(URL_POST);
             }else{
                 Log.e("TBD_TAG", "error de red");
                 Toast.makeText(getActivity().getApplicationContext(),"Error de conexión , intenta de nuevo o más tarde",Toast.LENGTH_LONG).show();
@@ -81,7 +83,8 @@ public class NewItem extends Fragment implements View.OnClickListener  {
             Log.i("TBD_TAG", "Añadido");
             Toast.makeText(this.getActivity(),
                     "Actor añadido exitosamente", Toast.LENGTH_LONG).show();
-            InputMethodManager mgr = (InputMethodManager) this.getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager mgr = (InputMethodManager) this.getActivity()
+                    .getSystemService(Context.INPUT_METHOD_SERVICE);
             mgr.hideSoftInputFromWindow(this.etLastName.getWindowToken(), 0);
 
         }

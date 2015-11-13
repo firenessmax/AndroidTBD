@@ -27,6 +27,7 @@ public class ItemList extends ListFragment {
 
     private BroadcastReceiver br = null;
     private final String URL_GET = "http://192.168.42.63:8080/sakila-backend/actors";
+    private String jsonData;
 
     /**
      * Constructor. Obligatorio para Fragmentos!
@@ -51,6 +52,9 @@ public class ItemList extends ListFragment {
         Fragment itemDetail = new ItemDetail();
         Bundle arguments = new Bundle();
         arguments.putString("item", item);
+        String[] faltantes=(new JsonHandler()).getDetail(this.jsonData,position);
+        arguments.putString("id", faltantes[0]);
+        arguments.putString("lastUpdate", faltantes[1]);
         itemDetail.setArguments(arguments);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, itemDetail);
@@ -84,7 +88,7 @@ public class ItemList extends ListFragment {
         SystemUtilities su = new SystemUtilities(getActivity().getApplicationContext());
         if (su.isNetworkAvailable()) {
             Log.i("TBD_TAG","Conectado a la red");
-            new HttpGet(getActivity().getApplicationContext()).execute(URL_GET);
+            new HttpGet(getActivity().getApplicationContext(),this).execute(URL_GET);
         }else{
             Log.e("TBD_TAG","error de red");
             Toast.makeText(getActivity().getApplicationContext(),"Error de conexión , intenta de nuevo o más tarde",Toast.LENGTH_LONG).show();
@@ -102,5 +106,7 @@ public class ItemList extends ListFragment {
         }
         super.onPause();
     }// onPause()
-
+    public void setJsonData(String s){
+        this.jsonData=s;
+    }
 }// ItemList extends ListFragment

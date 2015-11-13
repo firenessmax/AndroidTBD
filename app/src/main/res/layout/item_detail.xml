@@ -8,6 +8,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/void_string"
+        android:id="@+id/item_detail_id"
+        android:layout_gravity="center_horizontal"
+        android:textSize="12dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="15dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/void_string"
         android:id="@+id/item_detail"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:textSize="25dp"
+        android:textColor="@android:color/black" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/void_string"
+        android:id="@+id/item_detail_lu"
+        android:layout_gravity="center_horizontal"
+        android:textSize="10dp"
+        android:layout_marginTop="10dp"
+        android:textIsSelectable="false" />
 </LinearLayout>
